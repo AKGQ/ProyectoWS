@@ -9,8 +9,6 @@ load_dotenv()
 app = Flask(__name__)
 uri = os.getenv("URI")
 app.config["MONGO_URI"]=uri
-app.config["MONGO_URI"]=''
-
 mongo = PyMongo(app)
 
 @app.route('/api/pagos', methods=['POST']) 
