@@ -3,7 +3,7 @@ from flask_pymongo import PyMongo
 from bson import json_util
 
 app = Flask(__name__)
-app.config["MONGO_URI"]='mongodb+srv://sysdi_user:8AHTInspUUlOFLjv@cluster0.tcufg.mongodb.net/sys_distribuidos?retryWrites=true&w=majority'
+app.config["MONGO_URI"]=''
 mongo = PyMongo(app)
 
 @app.route('/api/pagos', methods=['POST']) 
