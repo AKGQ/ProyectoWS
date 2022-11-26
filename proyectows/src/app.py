@@ -7,8 +7,12 @@ from dotenv import load_dotenv
 load_dotenv() 
 
 app = Flask(__name__)
+<<<<<<< HEAD
 uri = os.getenv("URI")
 app.config["MONGO_URI"]=uri
+=======
+app.config["MONGO_URI"]=''
+>>>>>>> 7f2c17ecccec69fab9ffe9c9111c56d92162dc47
 mongo = PyMongo(app)
 
 @app.route('/api/pagos', methods=['POST']) 
