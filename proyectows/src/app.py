@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from bson import json_util
 import os
 from dotenv import load_dotenv
+from waitress import serve
 
 load_dotenv() 
 
@@ -91,4 +92,4 @@ def no_encontrado(error=None):
     return mensajeError
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    serve(app, host='0.0.0.0', port=50100, threads=2)
