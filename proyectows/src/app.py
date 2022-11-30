@@ -4,6 +4,8 @@ from bson import json_util
 import os
 from dotenv import load_dotenv
 from waitress import serve
+import requests
+import configparser
 
 load_dotenv() 
 
@@ -11,6 +13,7 @@ app = Flask(__name__)
 uri = os.getenv("URI")
 app.config["MONGO_URI"]=uri
 mongo = PyMongo(app)
+
 
 @app.route('/api/pagos', methods=['POST']) 
 def crear():
@@ -57,6 +60,12 @@ def mostrar_usuario_matricula(numeroMatricula):
 
 @app.route('/api/estudiantes/registrarcalificacion', methods=['GET', 'POST'])
 def registrarcalificacion():
+    data = api_to_json()
+    temp = "{0:.2f}".format(data["main"]["temp"])
+    sensacion = "{0:.2f}".format(data["main"]["feels_like"])
+    clima = data["weather"][0]["main"]
+    localizacion = data["name"]
+
     if request.method == 'POST':
         matricula = mongo.db.Pagos.find({'NumeroMatricula' : request.form['numeroMatricula']})
         respuesta = json_util.dumps(matricula)
@@ -68,7 +77,7 @@ def registrarcalificacion():
         else:
             return no_encontrado()
 
-    return render_template('./templates/index.html')
+    return render_template('index.html', localizacion=localizacion, temp=temp, sensacion=sensacion, clima=clima)
 
 
 #MANEJO DE ERRORES
@@ -90,6 +99,13 @@ def no_encontrado(error=None):
     })
     mensajeError.status_code = 404
     return mensajeError
+
+def api_to_json():
+    api_url = "http://api.openweathermap.org/data/2.5/weather?q=Culiacan,mx&units=metric&APPID=bde0fccd226156a0f9899a6954345f7a"
+    r = requests.get(api_url)
+    return r.json()
+
+print(api_to_json())
 
 if __name__ == "__main__":
     serve(app, host='0.0.0.0', port=50100, threads=2)
