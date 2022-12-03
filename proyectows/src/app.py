@@ -73,7 +73,7 @@ def registrarcalificacion():
         else:
             return no_encontrado()
 
-    return render_template('./templates/index.html', localizacion=localizacion, temp=temp, sensacion=sensacion, clima=clima)
+    return render_template('index.html', localizacion=localizacion, temp=temp, sensacion=sensacion, clima=clima)
 
 
 #MANEJO DE ERRORES
