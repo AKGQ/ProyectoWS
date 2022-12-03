@@ -49,11 +49,7 @@ def mostrar_usuario_matricula(numeroMatricula):
     usuario = mongo.db.Pagos.find({'NumeroMatricula': numeroMatricula})
     response = json_util.dumps(usuario)
     if response != "[]":
-        return response(
-            response,
-            status=200,
-            mimetype='application/json'
-        )
+        return response
     else:
         return no_encontrado()
 
