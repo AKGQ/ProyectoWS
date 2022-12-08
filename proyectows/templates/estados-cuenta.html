@@ -62,7 +62,7 @@
               </tr>
             </div>
           `;
-          const response = await fetch(`${uri}/pagos/${numeroMatricula.value}`);
+          const response = await fetch(`${uri}/Pagos/${numeroMatricula.value}`);
           const data = await response.json();
   
           if ( data && data.length > 0 ) {   
