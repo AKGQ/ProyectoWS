@@ -11,6 +11,7 @@ load_dotenv()
 
 app = Flask(__name__)
 uri = os.getenv("URI")
+net_uri = os.getenv("NET_URI")
 app.config["MONGO_URI"]=uri
 mongo = PyMongo(app)
 
@@ -74,6 +75,13 @@ def registrarcalificacion():
             return no_encontrado()
 
     return render_template('index.html', localizacion=localizacion, temp=temp, sensacion=sensacion, clima=clima)
+
+@app.route('/public/estados-cuenta', methods=['GET'])
+def estadosCuenta():
+    try:
+        return render_template('estados-cuenta.html', uri=net_uri)
+    except Exception as e:
+        return str(e)
 
 
 #MANEJO DE ERRORES
