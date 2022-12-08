@@ -12,40 +12,52 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="form">
-        <h3 class="text-center text-white pt-5">form</h3>
-        <div class="container">
-            <div id="form-row" class="row justify-content-center align-items-center">
-                <div id="form-column" class="col-md-6">
-                    <div id="form-box" class="col-md-12">
-                        <form id="calificacion-form" class="form" action="" method="POST">
-                            <h3 class="text-center text-info">Registrar Calificación</h3>
-                            <div class="form-group">
-                                <label for="numeroMatricula" class="text-info">Numero de matrícula:</label><br>
-                                <input type="text" name="numeroMatricula" id="numeroMatricula" class="form-control" required autofocus>
+    <div class="row align-items-center">
+        <div class="col-5 mt-5 ms-4 d-flex justify-content-center align-items-center ml-5">
+            <div id="" class="p-4" style="border: 2px solid #17a2b8; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <p class="pt-3 text-center" style="font-size: 13px; font-weight: 600; color: #555555;">{{ localizacion }}</p>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+                    <img width="100px" src="https://openweathermap.org/img/wn/{{ icono }}@4x.png" alt="Clima">
+                    <div class="d-flex">
+                        <h3 style="font-weight: 800; font-size: 54px;">{{ temp }}</h3>
+                        <span style="font-weight: 700;">°C</span>
+                    </div>
+                </div>
+                <h3 style="font-weight: 700; font-size: 26px; text-align: center;">{{ clima }}</h3>
+                <h4 style="font-weight: 600; font-size: 14px; line-height: 20px; text-align: center; color: #555555;">Sensacion térmica: {{ sensacion }}°C</h4>
+            </div>
+        </div>
+        <div class="col-6">            
+            <div id="form">
+                <h3 class="text-center text-white pt-5">form</h3>
+                <div class="container w-75">
+                    <div id="form-row" class="row justify-content-center align-items-center">
+                        <div id="form-column" class="col-md-12">
+                            <div id="form-box" class="col-md-12">
+                                <form id="calificacion-form" class="form" action="" method="POST">
+                                    <h3 class="text-center text-info">Registrar Calificación</h3>
+                                    <div class="form-group">
+                                        <label for="numeroMatricula" class="text-info">Numero de matrícula:</label><br>
+                                        <input type="text" name="numeroMatricula" id="numeroMatricula" class="form-control" required autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="materia" class="text-info">Materia:</label><br>
+                                        <input type="text" name="materia" id="materia" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="calificacion" class="text-info">Calificacion:</label><br>
+                                        <input type="text" name="calificacion" id="calificacion" class="form-control" required pattern="[0-9]|10">
+                                    </div>
+                                    <div class="form-group">
+        
+                                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Añadir Calificacion">
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="materia" class="text-info">Materia:</label><br>
-                                <input type="text" name="materia" id="materia" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="calificacion" class="text-info">Calificacion:</label><br>
-                                <input type="text" name="calificacion" id="calificacion" class="form-control" required pattern="[0-9]|10">
-                            </div>
-                            <div class="form-group">
-
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Añadir Calificacion">
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="climaCuliacan">
-        <h3>Clima en {{ localizacion }}</h3>
-        <h2>{{ temp }}° C</h2>
-        <h3>{{ clima }}</h3>
-        <h3>Sensación termica: {{ sensacion }}° C</h3>
     </div>
 </body>

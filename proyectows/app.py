@@ -61,6 +61,7 @@ def registrarcalificacion():
     temp = "{0:.2f}".format(data["main"]["temp"])
     sensacion = "{0:.2f}".format(data["main"]["feels_like"])
     clima = data["weather"][0]["main"]
+    icono = data["weather"][0]["icon"]
     localizacion = data["name"]
 
     if request.method == 'POST':
@@ -74,7 +75,7 @@ def registrarcalificacion():
         else:
             return no_encontrado()
 
-    return render_template('index.html', localizacion=localizacion, temp=temp, sensacion=sensacion, clima=clima)
+    return render_template('index.html', localizacion=localizacion, temp=temp, sensacion=sensacion, clima=clima, icono=icono)
 
 @app.route('/public/estados-cuenta', methods=['GET'])
 def estadosCuenta():
